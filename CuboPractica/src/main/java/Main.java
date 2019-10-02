@@ -13,10 +13,13 @@ import org.json.simple.parser.JSONParser;
 
 
 public class Main {
-	public static void main (String [] args) {
+	public static void main (String [] args) throws IOException {
 		
 		Cube cube =  importexport.convertjson();
-		importexport.array_to_json_format(cube);
+		
+		String a = importexport.obj_to_jso(cube);
+		
+		
 		
 	}
 	

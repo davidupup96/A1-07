@@ -12,20 +12,41 @@ import com.google.gson.Gson;
 public class importexport {
 	
 	
-	
-	public static void array_to_json_format(Cube cube) {
-		
+	public static String obj_to_jso (Cube cube) {
 		Gson gson = new Gson();
-		String a = gson.toJson(cube);
-		System.out.println(a);
+		String json = gson.toJson(cube);
+		return json;
+	}
+	
+	public static String arreglar_string(String string) {
 		
+		char first;
+		char middle;
+		char last;
+		
+		
+		for(int i = 0;i < string.length()-2; i++) {
+			
+			first = string.charAt(i);
+			middle = string.charAt(i+1);
+			last = string.charAt(i+2);
+			
+			String aux =""+first +middle+last;
+			
+			if(aux.equals("]],")) {
+				string = string.substring(0,i+2)+"\n"+string.substring(i+3);
+			}
+		}
+		
+		//System.out.println(string);
+		return string;
 		
 	}
 	
-	public static void write_json (String string) throws IOException {
-		FileWriter file = new FileWriter("C:\\Users\\VST\\Desktop");
+	public static void write_json (JSONObject obj) throws IOException {
+		FileWriter file = new FileWriter("C:\\Users\\VST\\git\\repositoryCUBE\\CuboPractica\\ejemploout.json");
 		try {
-			file.write(string.toJSONString());
+			file.write(obj.toJSONString());
 			System.out.println("\nJSON Object: "+obj);
 			
 		}catch(IOException e) {
@@ -54,7 +75,7 @@ public class importexport {
 		cube.setDown(convert_jsonarray(down));
 		cube.setFront(convert_jsonarray(front));
 		cube.setLeft(convert_jsonarray(left));
-		cube.setRigth(convert_jsonarray(right));
+		cube.setRight(convert_jsonarray(right));
 		cube.setUp(convert_jsonarray(up));
 		
 		

@@ -1,12 +1,13 @@
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class Cube {
 	
-	private int[][] down;
-	private int[][] left;
 	private int[][] back;
+	private int[][] down;
 	private int[][] front;
-	private int[][] rigth;
+	private int[][] left;
+	private int[][] right;
 	private int[][] up;
 	
 	public Cube() {
@@ -38,11 +39,11 @@ public class Cube {
 	public void setLeft(int[][] left) {
 		this.left = left;
 	}
-	public int[][] getRigth() {
-		return rigth;
+	public int[][] getRight() {
+		return right;
 	}
-	public void setRigth(int[][] rigth) {
-		this.rigth = rigth;
+	public void setRight(int[][] rigth) {
+		this.right = rigth;
 	}
 	public int[][] getUp() {
 		return up;
