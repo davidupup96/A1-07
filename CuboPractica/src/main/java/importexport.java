@@ -13,12 +13,14 @@ public class importexport {
 	
 	
 	public static String obj_to_jso (Cube cube) {
+		//Method for converting the cube object to string
 		Gson gson = new Gson();
 		String json = gson.toJson(cube);
 		return json;
 	}
 	
 	public static String arreglar_string(String string) {
+		//Method for upgrading the understandability of the json output file
 		
 		char first;
 		char middle;
@@ -38,16 +40,18 @@ public class importexport {
 			}
 		}
 		
-		//System.out.println(string);
+		string = string+"\n\n\n";
+		
 		return string;
 		
 	}
 	
-	public static void write_json (JSONObject obj) throws IOException {
-		FileWriter file = new FileWriter("C:\\Users\\VST\\git\\repositoryCUBE\\CuboPractica\\ejemploout.json");
+	public static void write_json (String string) throws IOException {
+		//Method that concatenates cubes to a json file
+		FileWriter file = new FileWriter("C:\\Users\\VST\\git\\repositoryCUBE\\CuboPractica\\ejemploout.json",true);
 		try {
-			file.write(obj.toJSONString());
-			System.out.println("\nJSON Object: "+obj);
+			file.write(string);
+			System.out.println("\nJSON Object: "+string);
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -116,6 +120,7 @@ public class importexport {
 
 	
 	public static Object readjson() {
+		//Method that reads a json file
 		
 		//Parser
 		JSONParser jsonParser = new JSONParser();

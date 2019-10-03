@@ -16,8 +16,10 @@ public class Main {
 	public static void main (String [] args) throws IOException {
 		
 		Cube cube =  importexport.convertjson();
-		
 		String a = importexport.obj_to_jso(cube);
+		a = importexport.arreglar_string(a);
+		importexport.write_json(a);
+		//System.out.println(a);
 		
 		
 		
