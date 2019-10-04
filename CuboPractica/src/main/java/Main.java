@@ -1,53 +1,22 @@
-
- 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.ArrayList;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 
 
 public class Main {
 	public static void main (String [] args) throws IOException {
 		
+		System.out.println("<<<<<<<<<<<<<<<<<<BEFORE MOVEMENT>>>>>>>>>>>>>>>>>>");
 		Cube cube =  importexport.convertjson();
-		String a = importexport.obj_to_jso(cube);
-		a = importexport.arreglar_string(a);
-		importexport.write_json(a);
-		//System.out.println(a);
-		
-		cube=middleVertical(cube);
-		/*System.out.println("UP");
-		printarray(cube.getUp());
-		System.out.println("down");
-		printarray(cube.getDown());
-		System.out.println("Front");
-		printarray(cube.getFront());
-		System.out.println("BAck");
-		printarray(cube.getBack());*/
-		
+		Printer.printcube(cube);
+		System.out.println("<<<<<<<<<<<<<<<<<<AFTER MOVEMENT>>>>>>>>>>>>>>>>>>");
+		cube = Movements.L0(cube);
+		Printer.printcube(cube);
 	}
 	
-	public static void printarray(int[][] array) {
-		for(int i = 0; i < array.length; i++) {
-			for(int j = 0; j < array.length; j++ ) {
-				System.out.print(array[i][j]);
-			}
-			System.out.println();
-		}
-	}
-	public static void horizontal(Cube c) {
-		
-	}
-	public static void vertical(Cube c) {
-		
-	}
-	public static Cube middleVertical(Cube c) {
+	
+	
+	
+
+	/*public static Cube middleVertical(Cube c) {
 		int	[][]matriz1;
 		int [][]matriz2;
 		
@@ -93,7 +62,7 @@ public class Main {
 			}
 		}
 		return a;
-	}//end nonReference
+	}//end nonReference*/
 	
 	
 }
