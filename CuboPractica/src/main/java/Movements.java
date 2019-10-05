@@ -12,6 +12,24 @@ public class Movements {
 
 		return cube;
 	}
+	public static Cube L1(Cube cube) {
+
+		// Hacer los movimientos
+		cube = mov_traslacionL(cube, 1, 1);
+
+		return cube;
+	}
+	public static Cube L2(Cube cube) {
+
+		// Girar cara left
+		int[][] rigth = cube.getRight(); 
+			rigth =	rotate90(rigth,rigth.length);
+		cube.setRight(rigth);;
+		// Hacer los movimientos
+		cube = mov_traslacionL(cube, 2, 0);
+
+		return cube;
+	}
 
 	public static Cube D0(Cube cube) {
 		
@@ -22,6 +40,66 @@ public class Movements {
 
 		return cube;
 
+	}
+	
+	public static Cube D1(Cube cube) {
+		
+		cube = mov_traslacionD(cube, 1, 1, 1, 1);
+
+		return cube;
+
+	}
+	
+	public static Cube D2(Cube cube) {
+		
+		int[][] up = cube.getUp();
+		up = rotate90(up,up.length);
+		cube.setUp(up);
+		cube = mov_traslacionD(cube, 0, 2, 2, 0);
+
+		return cube;
+
+	}
+	
+	public static Cube B0(Cube cube) {
+		
+		int[][] back = cube.getBack();
+		back = rotate90(back,back.length);
+		cube.setBack(back);
+		
+		cube = mov_traslacionB (cube,0);
+		return cube;
+	}
+	
+	public static Cube B1(Cube cube) {
+		
+		cube = mov_traslacionB (cube,0);
+		return cube;
+	}
+	
+	public static Cube B2(Cube cube) {
+		
+		int[][] front = cube.getFront();
+		front = rotate90(front,front.length);
+		cube.setFront(front);
+		
+		cube = mov_traslacionB (cube,0);
+		return cube;
+	}
+	
+	public static Cube mov_traslacionB (Cube cube, int row) {
+		int len = cube.getLeft().length;
+		Cube aux = copy_cube(cube);
+		int[] uprow = copy_content_of_array_row(cube.getUp(), len, row);
+		
+		for(int i = 0; i < len; i++) {
+			aux.getUp()[row][i] = cube.getRight()[row][i];
+			aux.getRight()[row][i] = cube.getDown()[row][i];
+			aux.getDown()[row][i] = cube.getLeft()[row][i];
+			aux.getLeft()[row][i] = uprow[i];
+		}
+		
+		return cube;
 	}
 
 	public static Cube mov_traslacionD(Cube cube, int left_col, int rigth_col, int front_row, int back_row) {

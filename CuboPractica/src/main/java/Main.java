@@ -8,7 +8,7 @@ public class Main {
 		Cube cube =  importexport.convertjson();
 		Printer.printcube(cube);
 		System.out.println("<<<<<<<<<<<<<<<<<<AFTER MOVEMENT>>>>>>>>>>>>>>>>>>");
-		cube = Movements.D0(cube);
+		cube = Movements.B0(cube);
 		Printer.printcube(cube);
 		
 		
