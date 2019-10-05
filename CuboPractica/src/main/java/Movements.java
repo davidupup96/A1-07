@@ -24,34 +24,6 @@ public class Movements {
 
 	}
 
-	public static void B0(Cube cube) {
-
-	}
-
-	public static void L1(Cube cube) {
-
-	}
-
-	public static void D1(Cube cube) {
-
-	}
-
-	public static void B1(Cube cube) {
-
-	}
-
-	public static void L2(Cube cube) {
-
-	}
-
-	public static void D2(Cube cube) {
-
-	}
-
-	public static void B2(Cube cube) {
-
-	}
-
 	public static Cube mov_traslacionD(Cube cube, int left_col, int rigth_col, int front_row, int back_row) {
 		int len = cube.getBack().length;
 		Cube aux = copy_cube(cube);
