@@ -2,6 +2,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,6 +13,50 @@ import org.json.simple.parser.JSONParser;
 import com.google.gson.Gson;
 
 public class importexport {
+	
+	
+	 public static String getMd5(String input) 
+	    { 
+	        try { 
+	  
+	            // Static getInstance method is called with hashing MD5 
+	            MessageDigest md = MessageDigest.getInstance("MD5"); 
+	  
+	            // digest() method is called to calculate message digest 
+	            //  of an input digest() return array of byte 
+	            byte[] messageDigest = md.digest(input.getBytes()); 
+	  
+	            // Convert byte array into signum representation 
+	            BigInteger no = new BigInteger(1, messageDigest); 
+	  
+	            // Convert message digest into hex value 
+	            String hashtext = no.toString(16); 
+	            while (hashtext.length() < 32) { 
+	                hashtext = "0" + hashtext; 
+	            } 
+	            return hashtext; 
+	        }  
+	  
+	        // For specifying wrong message digest algorithms 
+	        catch (NoSuchAlgorithmException e) { 
+	            throw new RuntimeException(e); 
+	        } 
+	    } 
+	
+	
+	
+	public static String create_string_cube (Cube cube) {
+		String string = obj_to_jso(cube);
+		String aux = "";
+		for (int i = 0; i < string.length();i++) {
+			if(Character.isDigit(string.charAt(i))) {
+				aux = aux + string.charAt(i);
+			}
+		}
+		
+		return aux;
+		
+	}
 	
 	
 	public static String obj_to_jso (Cube cube) {
