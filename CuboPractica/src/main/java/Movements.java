@@ -87,6 +87,84 @@ public class Movements {
 		return cube;
 	}
 	
+	public static Cube b0(Cube cube) {
+		int[][] back = cube.getBack();
+		back = rotateminus90(back);
+		cube.setBack(back);
+		cube = mov_traslacionb (cube, 0);
+		return cube;
+	}
+	
+	public static Cube b1(Cube cube) {
+		cube = mov_traslacionb (cube, 1);
+		return cube;
+	}
+	
+	public static Cube b2(Cube cube) {
+		int[][] front = cube.getFront();
+		front = rotateminus90(front);
+		cube.setFront(front);
+		cube = mov_traslacionb (cube, 2);
+		return cube;
+	}
+	
+	public static Cube d0(Cube cube) {
+		int[][] down = cube.getDown();
+		down = rotateminus90(down);
+		cube.setDown(down);
+		cube = mov_traslaciond(cube, 2, 0, 0, 2);
+		return cube;
+	}
+	
+	public static Cube d1(Cube cube) {
+		cube = mov_traslaciond(cube, 1, 1, 1, 1);
+		return cube;
+	}
+	
+	public static Cube d2(Cube cube) {
+		int[][] up = cube.getUp();
+		up = rotateminus90(up);
+		cube.setUp(up);
+		cube = mov_traslaciond(cube, 0, 2, 2, 0);
+		return cube;
+	}
+	
+	public static Cube l0(Cube cube) {
+		int[][] left = cube.getLeft();
+		left = rotateminus90(left);
+		cube.setLeft(left);
+		cube = mov_traslacionl(cube, 0, 2);
+		return cube;
+	}
+	
+	public static Cube l1(Cube cube) {
+		cube = mov_traslacionl(cube, 1, 1);
+		return cube;
+	}
+	
+	public static Cube l2(Cube cube) {
+		int[][] right = cube.getRight();
+		right = rotateminus90(right);
+		cube.setRight(right);
+		cube = mov_traslacionl(cube, 2, 0);
+		return cube;
+	}
+
+	public static Cube mov_traslacionb (Cube cube, int row) {
+		int len = cube.getLeft().length;
+		Cube aux = copy_cube(cube);
+		int [] left = copy_content_of_array_row(cube.getLeft(), len, row);
+		
+		for(int i = 0; i < len; i++) {
+			aux.getLeft()[row][i] = cube.getDown()[row][i];
+			aux.getDown()[row][i] = cube.getRight()[row][i];
+			aux.getRight()[row][i] = cube.getUp()[row][i];
+			aux.getUp()[row][i] = left[i];
+		}
+		
+		return aux;
+	}
+	
 	public static Cube mov_traslacionB (Cube cube, int row) {
 		int len = cube.getLeft().length;
 		Cube aux = copy_cube(cube);
@@ -99,8 +177,33 @@ public class Movements {
 			aux.getLeft()[row][i] = uprow[i];
 		}
 		
-		return cube;
+		return aux;
 	}
+	
+	public static Cube mov_traslaciond(Cube cube, int left_col, int rigth_col, int front_row, int back_row) {
+		int len = cube.getBack().length;
+		Cube aux = copy_cube(cube);
+		int [] right = copy_content_of_array_col(cube.getRight(),len, rigth_col);
+		
+
+		for (int i = 0; i < len; i++) {
+			aux.getRight()[i][rigth_col] = cube.getFront()[front_row][len-1-i];
+		}
+		for (int i = 0; i < len; i++) {
+			aux.getFront()[front_row][i] = cube.getLeft()[i][left_col];
+		}
+
+		for (int i = 0; i < len; i++) {
+			aux.getLeft()[i][left_col] = cube.getBack()[back_row][len-1-i];
+		}
+
+		for (int j = 0; j < len; j++) {
+			aux.getBack()[back_row][j] = right[j];
+		}
+
+		return aux;
+	}
+
 
 	public static Cube mov_traslacionD(Cube cube, int left_col, int rigth_col, int front_row, int back_row) {
 		int len = cube.getBack().length;
@@ -126,6 +229,25 @@ public class Movements {
 
 		return aux;
 	}
+	
+	public static Cube mov_traslacionl(Cube cube, int col_back_down_front, int col_up) {
+		int len = cube.getBack().length;
+		Cube aux = copy_cube(cube);
+		int [] up = copy_content_of_array_col(cube.getUp(),len, col_up);
+		
+
+		for (int i = 0; i < len; i++) {
+			aux.getUp()[i][col_up] = cube.getFront()[len-1-i][col_back_down_front];
+			aux.getFront()[i][col_back_down_front] = cube.getFront()[i][col_back_down_front];
+			aux.getDown()[i][col_back_down_front] = cube.getBack()[i][col_back_down_front];
+			aux.getBack()[i][col_back_down_front] = up[i];
+
+		}
+
+		return aux;
+
+	}
+	
 
 	public static Cube mov_traslacionL(Cube cube, int col_back_down_front, int col_up) {
 		int len = cube.getBack().length;
@@ -215,6 +337,14 @@ public class Movements {
 	            a[j][N - 1 - i] = temp; 
 	        } 
 	    }
+		return a;
+	}
+	
+	public static int[][] rotateminus90 (int[][] a) {
+		for (int i = 0; i < 3; i++) {
+			a = rotate90(a,a.length);
+		}
+
 		return a;
 	}
 
