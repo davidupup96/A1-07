@@ -6,13 +6,13 @@ public class Printer {
 		System.out.println("--------------------------");
 		
 		System.out.println("LEFT  DOWN  RIGTH  UP");
-		System.out.println(printarrayrow(cube.getLeft(),0)+"   "+printarrayrow(cube.getDown(),0)+"   "
-		+printarrayrow(cube.getRight(),0)+"   "+printarrayrow(cube.getUp(),0));
-		System.out.println(printarrayrow(cube.getLeft(),1)+"   "+printarrayrow(cube.getDown(),1)+"   "
-		+printarrayrow(cube.getRight(),1)+"   "+printarrayrow(cube.getUp(),1));
-		System.out.println(printarrayrow(cube.getLeft(),2)+"   "+printarrayrow(cube.getDown(),2)+"   "
-		+printarrayrow(cube.getRight(),2)+"   "+printarrayrow(cube.getUp(),2));
+		for(int i = 0; i < cube.getBack().length; i++) {
+			
 		
+		
+		System.out.println(printarrayrow(cube.getLeft(),i)+"   "+printarrayrow(cube.getDown(),i)+"   "
+		+printarrayrow(cube.getRight(),i)+"   "+printarrayrow(cube.getUp(),i));
+		}
 		System.out.println("--------------------------");
 		
 		System.out.println("FRONT");

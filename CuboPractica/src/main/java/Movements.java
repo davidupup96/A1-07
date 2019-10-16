@@ -1,5 +1,58 @@
 
 public class Movements {
+	
+	
+	public static Cube do_movement (Cube cube ,String move) {
+		
+		String movement_tipe = move.substring(0,1);
+		int number = Integer.parseInt(move.substring(1));
+		System.out.println(number);
+		
+		switch(movement_tipe) {
+		case "L" :
+		case "l" :
+			cube = Calculate_mov_position_L (cube,movement_tipe,number);
+			System.out.println("Estas en el movimiento: "+movement_tipe);
+			break;
+		case "D" :
+		case "d" :
+			cube =  Calculate_mov_position_D (cube,movement_tipe,number);
+			System.out.println("Estas en el movimiento: "+movement_tipe);
+			break;
+		case "B" :
+		case "b" :
+			cube =  Calculate_mov_position_B (cube,movement_tipe,number);
+			System.out.println("Estas en el movimiento: "+movement_tipe);
+			break;
+		default:
+			System.out.println("MOVIMIENTO NO VALIDO");
+		}
+		
+		return cube;
+		
+	}
+	
+	public static Cube Calculate_mov_position_L (Cube cube,String move, int number) {
+		int col_back_down_front = 0;
+		int col_up = 0;
+
+		
+		
+		return cube;
+	}
+	
+	public static Cube Calculate_mov_position_D (Cube cube ,String move, int number) {
+		
+		
+		return cube;
+	}
+	
+	public static Cube Calculate_mov_position_B (Cube cube ,String move, int number) {
+		
+		
+		return cube;
+	}
+	
 
 	public static Cube L(Cube cube,int col_back_down_front, int col_up) {
 
@@ -9,7 +62,7 @@ public class Movements {
 			cube.setLeft(left);
 		}
 		
-		if(col_back_down_front==cube.getBack().length) {
+		if(col_back_down_front==cube.getBack().length-1) {
 			int[][] right = cube.getRight(); 
 			right =	rotate90(right,right.length);
 			cube.setRight(right);
@@ -50,7 +103,7 @@ public class Movements {
 			down = rotate90(down,down.length);
 			cube.setDown(down);
 		}
-		if(rigth_col==cube.getBack().length) {
+		if(rigth_col==cube.getBack().length-1) {
 			int[][] up = cube.getUp();
 			up = rotate90(up,up.length);
 			cube.setUp(up);
@@ -90,13 +143,13 @@ public class Movements {
 			back = rotate90(back,back.length);
 			cube.setBack(back);
 		}
-		if(row == cube.getLeft().length) {
+		if(row == cube.getLeft().length-1) {
 			int[][] front = cube.getFront();
 			front = rotate90(front,front.length);
 			cube.setFront(front);
 		}
 		
-		cube = mov_traslacionB (cube,0);
+		cube = mov_traslacionB (cube,row);
 		return cube;
 	}
 	
@@ -125,7 +178,7 @@ public class Movements {
 		cube.setBack(back);
 		}
 		
-		if(row == cube.getBack().length) {
+		if(row == cube.getBack().length-1) {
 			int[][] front = cube.getFront();
 			front = rotateminus90(front);
 			cube.setFront(front);
@@ -153,7 +206,7 @@ public class Movements {
 	
 	public static Cube d(Cube cube, int left_col, int rigth_col, int front_row, int back_row) {
 		
-		if(back_row == cube.getBack().length) {
+		if(rigth_col == 0) {
 			int[][] down = cube.getDown();
 			down = rotateminus90(down);
 			cube.setDown(down);
@@ -201,7 +254,7 @@ public class Movements {
 			cube.setLeft(left);
 		}
 		
-		if(col_back_down_front == cube.getBack().length) {
+		if(col_back_down_front == cube.getBack().length-1) {
 			int[][] right = cube.getRight();
 			right  = rotateminus90(right );
 			cube.setRight(right);
